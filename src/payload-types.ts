@@ -212,6 +212,8 @@ export interface User {
   salt?: string | null;
   hash?: string | null;
   resetPasswordRequestedAt?: string | null;
+  _verified?: boolean | null;
+  _verificationToken?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
   sessions?:
@@ -242,6 +244,64 @@ export interface Media {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+  sizes?: {
+    tiny?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    thumbnail?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    xsmall?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    small?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    medium?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    large?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    xlarge?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+  };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -250,33 +310,21 @@ export interface Media {
 export interface Page {
   id: number;
   title?: string | null;
+  name?: string | null;
   /**
    * When enabled, the slug will auto-generate from the title field on save and autosave.
    */
   generateSlug?: boolean | null;
   slug: string;
+  publishedAt?: string | null;
   description?: string | null;
   sections?:
     | (
         | {
             title?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
+            text?: string | null;
             image?: (number | null) | Media;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'hero';
@@ -284,22 +332,8 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            anchor?: string | null;
+            text?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'textSection';
@@ -307,22 +341,8 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            anchor?: string | null;
+            text?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'service';
@@ -330,37 +350,9 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
-            leftText?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            rightText?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            anchor?: string | null;
+            leftText?: string | null;
+            rightText?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'schedule';
@@ -368,7 +360,7 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'reviews';
@@ -377,7 +369,7 @@ export interface Page {
             title?: string | null;
             description?: string | null;
             form?: (number | null) | Form;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'request';
@@ -386,7 +378,7 @@ export interface Page {
             title?: string | null;
             description?: string | null;
             gallery?: (number | null) | Gallery;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'gallery';
@@ -394,46 +386,35 @@ export interface Page {
         | {
             title?: string | null;
             description?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
+            text?: string | null;
             image?: (number | null) | Media;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'about';
           }
       )[]
     | null;
-  seo?: {
-    metaTitle?: string | null;
-    metaDescription?: string | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    /**
+     * Maximum upload file size: 12MB. Recommended file size for images is <500KB.
+     */
+    image?: (number | null) | Media;
     keywords?: string | null;
     canonicalUrl?: string | null;
     metaRobots?: ('index,follow' | 'noindex,follow' | 'index,nofollow' | 'noindex,nofollow') | null;
-    preventIndexing?: boolean | null;
-    metaViewport?: string | null;
     ogTitle?: string | null;
     ogDescription?: string | null;
     ogImage?: (number | null) | Media;
-    ogUrl?: string | null;
-    ogType?: string | null;
     twitterCard?: ('summary' | 'summary_large_image' | 'app' | 'player') | null;
     twitterTitle?: string | null;
     twitterDescription?: string | null;
     twitterImage?: (number | null) | Media;
+    /**
+     * JSON-LD structured data in JSON format
+     */
     structuredData?: string | null;
   };
   updatedAt: string;
@@ -875,6 +856,8 @@ export interface UsersSelect<T extends boolean = true> {
   salt?: T;
   hash?: T;
   resetPasswordRequestedAt?: T;
+  _verified?: T;
+  _verificationToken?: T;
   loginAttempts?: T;
   lockUntil?: T;
   sessions?:
@@ -902,6 +885,80 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+  sizes?:
+    | T
+    | {
+        tiny?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        thumbnail?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        xsmall?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        small?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        medium?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        large?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        xlarge?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -909,8 +966,10 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface PagesSelect<T extends boolean = true> {
   title?: T;
+  name?: T;
   generateSlug?: T;
   slug?: T;
+  publishedAt?: T;
   description?: T;
   sections?:
     | T
@@ -921,7 +980,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               text?: T;
               image?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -931,7 +990,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               text?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -941,7 +1000,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               text?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -952,7 +1011,7 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               leftText?: T;
               rightText?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -961,7 +1020,7 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -971,7 +1030,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               form?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -981,7 +1040,7 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               gallery?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -992,26 +1051,23 @@ export interface PagesSelect<T extends boolean = true> {
               description?: T;
               text?: T;
               image?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
       };
-  seo?:
+  meta?:
     | T
     | {
-        metaTitle?: T;
-        metaDescription?: T;
+        title?: T;
+        description?: T;
+        image?: T;
         keywords?: T;
         canonicalUrl?: T;
         metaRobots?: T;
-        preventIndexing?: T;
-        metaViewport?: T;
         ogTitle?: T;
         ogDescription?: T;
         ogImage?: T;
-        ogUrl?: T;
-        ogType?: T;
         twitterCard?: T;
         twitterTitle?: T;
         twitterDescription?: T;
@@ -1298,6 +1354,7 @@ export interface Footer {
   id: number;
   title?: string | null;
   logo?: (number | null) | Media;
+  topText2?: string | null;
   topText?: {
     root: {
       type: string;
@@ -1345,23 +1402,9 @@ export interface Homepage {
     | (
         | {
             title?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
+            text?: string | null;
             image?: (number | null) | Media;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'hero';
@@ -1369,22 +1412,8 @@ export interface Homepage {
         | {
             title?: string | null;
             description?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            anchor?: string | null;
+            text?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'textSection';
@@ -1392,22 +1421,8 @@ export interface Homepage {
         | {
             title?: string | null;
             description?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            anchor?: string | null;
+            text?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'service';
@@ -1415,37 +1430,9 @@ export interface Homepage {
         | {
             title?: string | null;
             description?: string | null;
-            leftText?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            rightText?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
-            anchor?: string | null;
+            leftText?: string | null;
+            rightText?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'schedule';
@@ -1453,7 +1440,7 @@ export interface Homepage {
         | {
             title?: string | null;
             description?: string | null;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'reviews';
@@ -1462,7 +1449,7 @@ export interface Homepage {
             title?: string | null;
             description?: string | null;
             form?: (number | null) | Form;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'request';
@@ -1471,7 +1458,7 @@ export interface Homepage {
             title?: string | null;
             description?: string | null;
             gallery?: (number | null) | Gallery;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'gallery';
@@ -1479,23 +1466,9 @@ export interface Homepage {
         | {
             title?: string | null;
             description?: string | null;
-            text?: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            } | null;
+            text?: string | null;
             image?: (number | null) | Media;
-            anchor?: string | null;
+            id_anchor?: string | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'about';
@@ -1544,6 +1517,7 @@ export interface HeaderSelect<T extends boolean = true> {
 export interface FooterSelect<T extends boolean = true> {
   title?: T;
   logo?: T;
+  topText2?: T;
   topText?: T;
   bottomText?: T;
   copyright?: T;
@@ -1568,7 +1542,7 @@ export interface HomepageSelect<T extends boolean = true> {
               title?: T;
               text?: T;
               image?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1578,7 +1552,7 @@ export interface HomepageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               text?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1588,7 +1562,7 @@ export interface HomepageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               text?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1599,7 +1573,7 @@ export interface HomepageSelect<T extends boolean = true> {
               description?: T;
               leftText?: T;
               rightText?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1608,7 +1582,7 @@ export interface HomepageSelect<T extends boolean = true> {
           | {
               title?: T;
               description?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1618,7 +1592,7 @@ export interface HomepageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               form?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1628,7 +1602,7 @@ export interface HomepageSelect<T extends boolean = true> {
               title?: T;
               description?: T;
               gallery?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };
@@ -1639,7 +1613,7 @@ export interface HomepageSelect<T extends boolean = true> {
               description?: T;
               text?: T;
               image?: T;
-              anchor?: T;
+              id_anchor?: T;
               id?: T;
               blockName?: T;
             };

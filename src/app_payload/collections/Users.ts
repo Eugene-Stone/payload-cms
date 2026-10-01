@@ -6,12 +6,27 @@ export const Users: CollectionConfig = {
 	admin: {
 		useAsTitle: 'username',
 	},
-	auth: true,
+	// auth: true,
+	auth: {
+		// verify: true  нужен только если нужно подтверждение email
+		verify: true, // Require email verification before being allowed to authenticate
+		tokenExpiration: 7200, // How many seconds to keep the user logged in
+		maxLoginAttempts: 5, // Automatically lock a user out after X amount of failed logins
+		lockTime: 600 * 1000, // Time period to allow the max login attempts
+
+		forgotPassword: {
+			expiration: 3600000,
+		},
+	},
 
 	access: {
 		create: () => true,
 
 		read: () => true,
+		// read: ({ req: { user } }) => {
+		// 	if (!user) return false
+		// 	return true
+		// },
 
 		update: ({ req: { user }, id }) => {
 			if (!user) return false
@@ -40,15 +55,16 @@ export const Users: CollectionConfig = {
 		},
 		{
 			type: 'tabs',
-			admin: {
-				hidden: true,
-			},
+			// admin: {
+			// 	hidden: true,
+			// },
 			tabs: [
 				{
 					label: 'Tab_1',
 					fields: [
 						{
 							name: 'tabText_1',
+							label: 'Label title',
 							type: 'text',
 							required: false,
 						},
@@ -59,7 +75,8 @@ export const Users: CollectionConfig = {
 					fields: [
 						{
 							name: 'tabText_2',
-							type: 'text',
+							label: 'Label title',
+							type: 'textarea',
 							required: false,
 						},
 					],

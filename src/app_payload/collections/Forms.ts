@@ -7,6 +7,13 @@ export const Forms: CollectionConfig = {
 	admin: {
 		useAsTitle: 'title',
 	},
+	access: {
+		read: () => true,
+		// create: () => true,
+		// update: () => true,
+		// delete: () => true,
+		// delete: hasRole(['superAdmin', 'admin', 'editor']),
+	},
 	versions: {
 		drafts: true,
 	},

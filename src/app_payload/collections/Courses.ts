@@ -1,12 +1,18 @@
 import { slugField, type CollectionConfig } from 'payload'
 
 import { seoField } from '@/app_payload/fields/seo'
-// import { slugField } from '@/app_payload/fields/slug'
 
 export const Courses: CollectionConfig = {
 	slug: 'courses',
 	admin: {
 		useAsTitle: 'title',
+	},
+	access: {
+		read: () => true,
+		// create: () => true,
+		// update: () => true,
+		// delete: () => true,
+		// delete: hasRole(['superAdmin', 'admin', 'editor']),
 	},
 	versions: {
 		drafts: true,

@@ -5,6 +5,13 @@ import { seoField } from '@/app_payload/fields/seo'
 
 export const Homepage: GlobalConfig = {
 	slug: 'homepage',
+	access: {
+		read: () => true,
+		// create: () => true,
+		// update: () => true,
+		// delete: () => true,
+		// delete: hasRole(['superAdmin', 'admin', 'editor']),
+	},
 	versions: {
 		drafts: true,
 	},

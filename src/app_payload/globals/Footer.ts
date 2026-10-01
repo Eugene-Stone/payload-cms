@@ -1,8 +1,15 @@
 import type { GlobalConfig } from 'payload'
-// import { CKEditorField } from '../fields/CKEditorField'
+import { CKEditorField } from '../fields/CKEditorField'
 
 export const Footer: GlobalConfig = {
 	slug: 'footer',
+	access: {
+		read: () => true,
+		// create: () => true,
+		// update: () => true,
+		// delete: () => true,
+		// delete: hasRole(['superAdmin', 'admin', 'editor']),
+	},
 	versions: {
 		drafts: true,
 	},
@@ -17,7 +24,7 @@ export const Footer: GlobalConfig = {
 			type: 'upload',
 			relationTo: 'media',
 		},
-		// CKEditorField('topText'),
+		CKEditorField('topText2', 'Top text'),
 		{
 			name: 'topText',
 			type: 'richText',

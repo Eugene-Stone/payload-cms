@@ -1,12 +1,13 @@
 import type { Field } from 'payload'
 
-export const CKEditorField = (name = 'content'): Field => ({
+export const CKEditorField = (name: string, label?: string): Field => ({
 	name,
 	type: 'textarea',
+	label: label || name,
 
 	admin: {
 		components: {
-			Field: '/app_payload/components/CKEditorField',
+			Field: '/app_payload/components/CKEditorComponent',
 		},
 	},
 })
