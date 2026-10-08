@@ -1355,6 +1355,7 @@ export interface Footer {
   title?: string | null;
   logo?: (number | null) | Media;
   topText2?: string | null;
+  topText3?: string | null;
   topText?: {
     root: {
       type: string;
@@ -1518,6 +1519,7 @@ export interface FooterSelect<T extends boolean = true> {
   title?: T;
   logo?: T;
   topText2?: T;
+  topText3?: T;
   topText?: T;
   bottomText?: T;
   copyright?: T;

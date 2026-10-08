@@ -33,6 +33,8 @@ import { Header } from './app_payload/globals/Header'
 import { Homepage } from './app_payload/globals/Homepage'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 
+import { htmlEditorPlugin } from '@/app_payload/plugins/htmlEditor'
+
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -94,6 +96,9 @@ export default buildConfig({
 
 	sharp,
 	plugins: [
+		htmlEditorPlugin({
+			mediaCollection: 'media',
+		}),
 		seoPlugin({
 			collections: ['pages'],
 			uploadsCollection: 'media',
