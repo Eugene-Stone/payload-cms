@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/index.ts
 import type { Config } from 'payload'
 
 export type HtmlEditorPluginOptions = {

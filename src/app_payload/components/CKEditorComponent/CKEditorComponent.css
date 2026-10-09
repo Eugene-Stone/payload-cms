@@ -1,15 +1,52 @@
-.ck-editor__editable_inline {
-	min-height: 300px;
-}
-
+/* Общие настройки редактора */
 .payload-ckeditor {
 	margin-bottom: 20px;
 }
 
-.ck-editor__main .ck-source-editing-area {
+.ck-editor__editable_inline,
+.ck-editor__main .ck-source-editing-area,
+.ck-editor__main .ck-source-editing-area textarea,
+.payload-ckeditor .ck-editor__editable_inline {
 	min-height: 300px;
 }
 
-.ck-editor__main .ck-source-editing-area textarea {
-	min-height: 300px;
+/* Светлая тема */
+.payload-ckeditor {
+	--ck-color-base-background: #ffffff;
+	--ck-color-base-text: #333333;
+	--ck-color-base-border: #d1d5db;
+	--ck-content-font-color: #333333;
+}
+
+/* Тёмная тема Payload */
+[data-theme='dark'] .payload-ckeditor {
+	--ck-color-base-background: #1f2329;
+	--ck-color-base-text: #e5e7eb;
+	--ck-color-base-border: #454b54;
+	--ck-color-text: #e5e7eb;
+	--ck-content-font-color: #e5e7eb;
+	--ck-color-base-foreground: #292e36;
+	--ck-color-list-background: #292e36;
+	--ck-color-button-default-hover-background: #363c46;
+	--ck-color-button-default-active-background: #414854;
+}
+
+[data-theme='dark'] .payload-ckeditor .ck-editor__editable_inline {
+	background-color: var(--ck-color-base-background);
+	color: var(--ck-content-font-color);
+}
+
+[data-theme='dark'] .payload-ckeditor .ck.ck-toolbar {
+	background-color: var(--ck-color-base-foreground);
+	border-color: var(--ck-color-base-border);
+}
+
+[data-theme='dark'] .payload-ckeditor .ck.ck-editor__main>.ck-editor__editable {
+	border-color: var(--ck-color-base-border);
+}
+
+/* Режим редактирования HTML */
+[data-theme='dark'] .payload-ckeditor .ck-source-editing-area textarea {
+	background-color: #1f2329;
+	color: #e5e7eb;
 }

@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/utils/insertMedia.ts
 import type { Editor } from '@tiptap/react'
 
 import { buildSrcSet } from './buildSrcSet'

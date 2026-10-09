@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/field.ts
 import type { Field } from 'payload'
 
 export type HtmlEditorOptions = {

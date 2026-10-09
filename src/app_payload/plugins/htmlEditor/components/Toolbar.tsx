@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/components/Toolbar.tsx
 'use client'
 
 import type { Editor } from '@tiptap/react'
@@ -8,6 +9,7 @@ import { uploadMedia } from '../utils/uploadMedia'
 import { insertMedia } from '../utils/insertMedia'
 
 import { MediaLibraryModal } from './MediaLibraryModal'
+import { useEditorState } from '@tiptap/react'
 
 type Props = {
 	editor: Editor
@@ -18,7 +20,16 @@ export function Toolbar({ editor }: Props) {
 
 	const [mediaLibraryOpen, setMediaLibraryOpen] = useState(false)
 
-	const isTableActive = editor.isActive('table')
+	// const isTableActive = editor.isActive('table')
+
+	const { isTableActive, isBold, isItalic } = useEditorState({
+		editor,
+		selector: ({ editor }) => ({
+			isTableActive: editor.isActive('table'),
+			isBold: editor.isActive('bold'),
+			isItalic: editor.isActive('italic'),
+		}),
+	})
 
 	return (
 		<>

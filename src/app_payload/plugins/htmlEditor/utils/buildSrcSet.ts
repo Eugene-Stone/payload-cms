@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/utils/buildSrcSet.ts
 type MediaSize = {
 	url?: string
 	width?: number

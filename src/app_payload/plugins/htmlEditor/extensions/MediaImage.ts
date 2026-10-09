@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/extensions/MediaImage.ts
 import Image from '@tiptap/extension-image'
 import { mergeAttributes } from '@tiptap/core'
 

@@ -1,3 +1,4 @@
+// /Users/yevhen/Learning/React/payload/payload-cms/src/app_payload/plugins/htmlEditor/utils/uploadMedia.ts
 export async function uploadMedia(file: File) {
 	const formData = new FormData()
 
