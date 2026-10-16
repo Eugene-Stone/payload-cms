@@ -1354,8 +1354,8 @@ export interface Footer {
   id: number;
   title?: string | null;
   logo?: (number | null) | Media;
-  topText2?: string | null;
-  topText3?: string | null;
+  topTextHtml?: string | null;
+  topTextCKEditor?: string | null;
   topText?: {
     root: {
       type: string;
@@ -1518,8 +1518,8 @@ export interface HeaderSelect<T extends boolean = true> {
 export interface FooterSelect<T extends boolean = true> {
   title?: T;
   logo?: T;
-  topText2?: T;
-  topText3?: T;
+  topTextHtml?: T;
+  topTextCKEditor?: T;
   topText?: T;
   bottomText?: T;
   copyright?: T;

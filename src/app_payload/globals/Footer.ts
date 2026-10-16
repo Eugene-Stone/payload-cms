@@ -1,6 +1,7 @@
 import type { GlobalConfig } from 'payload'
 import { CKEditorField } from '../fields/CKEditorField'
-import { htmlEditorField } from '@/app_payload/plugins/htmlEditor/field'
+// import { htmlEditorField } from '@/app_payload/plugins/htmlEditor/field'
+import { htmlEditorField } from 'payload-html-editor'
 
 export const Footer: GlobalConfig = {
 	slug: 'footer',
@@ -25,11 +26,11 @@ export const Footer: GlobalConfig = {
 			type: 'upload',
 			relationTo: 'media',
 		},
-		CKEditorField('topText2', 'Top text 2'),
 		htmlEditorField({
-			name: 'topText3',
-			label: 'Top text 3',
+			name: 'topTextHtml',
+			label: 'Top text Html',
 		}),
+		CKEditorField('topTextCKEditor', 'Top text CKEditor'),
 		{
 			name: 'topText',
 			type: 'richText',
